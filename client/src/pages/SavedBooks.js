@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
+import { QUERY_ME } from '../utils/queries'
+import { SAVE_BOOK, REMOVE_BOOK } from '../utils/mutations'
+import { useQuery } from '@apollo/client';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
