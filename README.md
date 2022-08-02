@@ -79,4 +79,4 @@ REACT, Apollo, Heroku, JavaScript, HTML, css
 
 ## Sites
 GitHub Repository(https://github.com/bethanyjean/book-search-engine)  
-Deployed Application()
+Deployed Application(https://google-book-search-bjbg.herokuapp.com/)
