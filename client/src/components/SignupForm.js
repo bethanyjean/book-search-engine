@@ -31,17 +31,12 @@ const SignupForm = () => {
 
     try {
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: { ...userFormData },
       });
 
       Auth.login(data.addUser.token);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      
-      console.log(user);
+    
     } catch (err) {
       console.error(err);
       setShowAlert(true);

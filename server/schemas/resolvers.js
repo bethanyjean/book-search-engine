@@ -40,7 +40,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addBook: async (parent, args, context) => {
+    saveBook: async (parent, args, context) => {
       if (context.user) {
         const book = await Book.create({ ...args, username: context.user.username });
 

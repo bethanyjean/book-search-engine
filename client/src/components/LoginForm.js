@@ -30,13 +30,9 @@ const LoginForm = (props) => {
     }
 
     try {
-      const response = await login ({
-        variables: { ...formState },
+      const { data } = await login ({
+        variables: { ...userFormData },
       });
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
 
       Auth.login(data.login.token);
     } catch (err) {

@@ -6,6 +6,8 @@ import { QUERY_ME } from '../utils/queries'
 import { REMOVE_BOOK } from '../utils/mutations'
 import { useQuery } from '@apollo/client';
 import { removeBookId } from '../utils/localStorage';
+import { useMutation } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 
 const SavedBooks = (props) => {
   const { username: userParam } = useParams();
@@ -22,19 +24,12 @@ const SavedBooks = (props) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
         if (!token) {
           return false;
         }
 
-        const response = await getMe(token);
-
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-
-        const user = await response.json();
         setUserData(user);
       } catch (err) {
         console.error(err);
@@ -46,7 +41,7 @@ const SavedBooks = (props) => {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const token = Auth.loggedIn() ? Auth.getProfile() : null;
 
     if (!token) {
       return false;
@@ -59,9 +54,6 @@ const SavedBooks = (props) => {
     } catch (e) {
       console.error(e);
     }
-
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     

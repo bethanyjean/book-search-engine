@@ -8,7 +8,7 @@ export const QUERY_ME = gql`
       email
       savedBooks {
         _id: ID
-        authors: array
+        authors: [String]
         image: String
         link: String
         title: String
